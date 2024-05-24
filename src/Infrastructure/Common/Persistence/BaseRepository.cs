@@ -1,4 +1,5 @@
 ﻿using Apexa.AdvisorApp.Application.Common.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,22 +24,19 @@ namespace Apexa.AdvisorApp.Infrastructure.Common.Persistence
             return entity;
         }
 
-        public Task<T> DeleteAsync(Guid Id)
+        public async Task DeleteAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
 
         public Task<IReadOnlyList<T>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetByIdAsync(Guid Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }

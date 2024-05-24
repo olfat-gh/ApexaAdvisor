@@ -10,6 +10,6 @@ namespace Apexa.AdvisorApp.Application.Common.Interfaces
     public interface IAdvisorRepository : IAsyncRepository<Advisor>
     {
 
-
+        Task<Advisor> GetByIdAsync(Guid id);
     }
 }

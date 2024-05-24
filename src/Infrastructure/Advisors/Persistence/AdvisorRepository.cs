@@ -1,6 +1,7 @@
 ﻿using Apexa.AdvisorApp.Application.Common.Interfaces;
 using Apexa.AdvisorApp.Domain.Entities;
 using Apexa.AdvisorApp.Infrastructure.Common.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,9 @@ namespace Apexa.AdvisorApp.Infrastructure.Advisors.Persistence
             
         }
 
+        public async Task<Advisor?> GetByIdAsync(Guid id)
+        {
+            return await _dbContext.Advisors.FirstOrDefaultAsync(item => item.Id == id);
+        }
     }
 }
