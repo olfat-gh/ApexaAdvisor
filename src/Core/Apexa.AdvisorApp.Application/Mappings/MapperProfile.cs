@@ -13,7 +13,11 @@ namespace Apexa.AdvisorApp.Application.Mappings
     {
         public MapperProfile() 
         {
-            CreateMap<CreateAdvisorCommand, Advisor>();
+            CreateMap<CreateAdvisorCommand, Advisor>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Status = dest.GenerateRandomHealthStatus();
+                });
         }
     }
 }
