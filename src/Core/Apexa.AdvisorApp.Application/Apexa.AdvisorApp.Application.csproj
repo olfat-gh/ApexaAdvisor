@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Advisors\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Apexa.AdvisorApp.Domain\Apexa.AdvisorApp.Domain.csproj" />
   </ItemGroup>
 

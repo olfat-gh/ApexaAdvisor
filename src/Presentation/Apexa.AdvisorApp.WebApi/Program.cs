@@ -4,6 +4,7 @@ using Apexa.AdvisorApp.Infrastructure;
 using Apexa.AdvisorApp.WebApi.Mappings;
 using Apexa.AdvisorApp.Application.Mappings;
 using Apexa.AdvisorApp.WebApi.Middleware;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,11 @@ builder.Services.RegisterAutoMapperServices([typeof(MapperProfile), typeof(ApiMa
 builder.Services.AddControllers();
 builder.Services.AddApexaApiVersioning();
 builder.Services.AddSwagger();
-
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    // show enum value in swagger.
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 
 
 var app = builder.Build();
