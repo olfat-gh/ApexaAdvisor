@@ -1,0 +1,6 @@
+@Apexa.App.Advisor.WebApi_HostAddress = http://localhost:5208
+
+GET {{Apexa.App.Advisor.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
