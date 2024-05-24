@@ -1,4 +1,4 @@
-﻿using Apexa.AdvisorApp.Application.Advisors.Commands;
+﻿using Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor;
 using Apexa.AdvisorApp.Contracts.V1.Advisor;
 using AutoMapper;
 

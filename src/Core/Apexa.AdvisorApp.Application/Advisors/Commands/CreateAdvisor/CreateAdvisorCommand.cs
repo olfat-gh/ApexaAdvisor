@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apexa.AdvisorApp.Application.Advisors.Commands
+namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
 {
     public class CreateAdvisorCommand : IRequest<Guid>
     {

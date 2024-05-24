@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apexa.AdvisorApp.Application.Advisors.Commands
+namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
 {
     public class CreateAdvisorCommandHandler : IRequestHandler<CreateAdvisorCommand, Guid>
     {
         private readonly IMapper _mapper;
         private readonly IAdvisorRepository _advisorRepository;
 
-        public CreateAdvisorCommandHandler(IMapper mapper,IAdvisorRepository advisorRepository)
+        public CreateAdvisorCommandHandler(IMapper mapper, IAdvisorRepository advisorRepository)
         {
             _mapper = mapper;
             _advisorRepository = advisorRepository;
@@ -23,13 +23,13 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands
         public async Task<Guid> Handle(CreateAdvisorCommand request, CancellationToken cancellationToken)
         {
             var advisor = _mapper.Map<Advisor>(request);
-            advisor= await _advisorRepository.AddAsync(advisor);
+            advisor = await _advisorRepository.AddAsync(advisor);
 
             return advisor.Id;
 
 
         }
 
-     
+
     }
 }
