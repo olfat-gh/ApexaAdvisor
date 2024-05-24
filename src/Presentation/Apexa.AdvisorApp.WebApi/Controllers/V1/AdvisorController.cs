@@ -1,5 +1,6 @@
 ﻿using Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Commands.DeleteAdvisor;
+using Apexa.AdvisorApp.Application.Advisors.Queries.GetAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Queries.GetAdvisorList;
 using Apexa.AdvisorApp.Contracts.Common;
 using Apexa.AdvisorApp.Contracts.V1.Advisor;
@@ -46,17 +47,24 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
             return NoContent();
         }
 
-
-
-        [HttpGet(Name = "GetAllAdvisors")]
+        [HttpGet("{advisorId:guid}", Name = "GetAdvisorById")]
         [MapToApiVersion("1.0")]
-        public async Task<PaginationApiResponse<AdvisorApiResponse>> GetAllAdvisors([FromQuery] AdvisorWithPagingApiRequest request)
+        public async Task<ActionResult<AdvisorApiResponse>> GetAdvisorById(Guid advisorId)
+        {
+            var command = new GetAdvisorQuery() { AdvisorId = advisorId };
+            var advisor=await _mediator.Send(command);
+            return Ok(_mapper.Map<AdvisorApiResponse>(advisor));
+        }
+
+        [HttpGet("List", Name = "GetAllAdvisors")]
+        [MapToApiVersion("1.0")]
+        public async Task<ActionResult<PaginationApiResponse<AdvisorApiResponse>>> GetAllAdvisors([FromQuery] AdvisorWithPagingApiRequest request)
         {
             var query = _mapper.Map<GetAdvisorsListQuery>(request);
             var (total,listAdvisors) = await _mediator.Send(query);
 
 
-            return new PaginationApiResponse<AdvisorApiResponse>(total, _mapper.Map<List<AdvisorApiResponse>>(listAdvisors));
+            return Ok(new PaginationApiResponse<AdvisorApiResponse>(total, _mapper.Map<List<AdvisorApiResponse>>(listAdvisors)));
         }
 
 
