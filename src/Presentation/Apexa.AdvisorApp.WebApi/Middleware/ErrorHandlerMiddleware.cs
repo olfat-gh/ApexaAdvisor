@@ -1,6 +1,7 @@
 ﻿
 
 using Apexa.AdvisorApp.Application.Common.Exceptions;
+using Apexa.AdvisorApp.Contracts.Common;
 using Asp.Versioning;
 using System.Text.Json;
 
@@ -44,10 +45,10 @@ namespace Apexa.AdvisorApp.WebApi.Middleware
                 _ => StatusCodes.Status500InternalServerError 
             };
 
-            await context.Response.WriteAsync(JsonSerializer.Serialize(new
+            await context.Response.WriteAsync(JsonSerializer.Serialize(new ErrorApiResponse
             { 
-                StatusCode = context.Response.StatusCode, 
-                Message = exception.Message, 
+                StatusCode = context.Response.StatusCode,
+                FailedMessage = exception.Message, 
             }));
 
 
