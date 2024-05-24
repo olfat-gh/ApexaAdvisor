@@ -1,4 +1,5 @@
 ﻿using Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor;
+using Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Queries.GetAdvisorList;
 using Apexa.AdvisorApp.Contracts.V1.Advisor;
 using Apexa.AdvisorApp.Domain.Entities;
@@ -13,8 +14,8 @@ namespace Apexa.AdvisorApp.WebApi.Mappings
             CreateMap<CreateAdvisorApiRequest, CreateAdvisorCommand>();
             CreateMap<AdvisorWithPagingApiRequest, GetAdvisorsListQuery>();
             CreateMap<Advisor, AdvisorApiResponse>();
+            CreateMap<UpdateAdvisorApiRequest, UpdateAdvisorCommand>();
             
-
 
         }
     }

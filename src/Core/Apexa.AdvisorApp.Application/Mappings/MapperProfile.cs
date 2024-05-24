@@ -1,4 +1,5 @@
 ﻿using Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor;
+using Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor;
 using Apexa.AdvisorApp.Domain.Entities;
 using AutoMapper;
 using System;
@@ -18,6 +19,9 @@ namespace Apexa.AdvisorApp.Application.Mappings
                 {
                     dest.Status = dest.GenerateRandomHealthStatus();
                 });
+
+            CreateMap<UpdateAdvisorCommand, Advisor>();
+
         }
     }
 }

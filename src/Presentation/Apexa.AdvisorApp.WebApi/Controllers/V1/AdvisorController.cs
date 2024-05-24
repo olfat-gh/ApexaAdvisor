@@ -1,5 +1,6 @@
 ﻿using Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Commands.DeleteAdvisor;
+using Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Queries.GetAdvisor;
 using Apexa.AdvisorApp.Application.Advisors.Queries.GetAdvisorList;
 using Apexa.AdvisorApp.Contracts.Common;
@@ -67,6 +68,14 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
             return Ok(new PaginationApiResponse<AdvisorApiResponse>(total, _mapper.Map<List<AdvisorApiResponse>>(listAdvisors)));
         }
 
+        [HttpPut(Name = "UpdateAdvisor")]
+        [MapToApiVersion("1.0")]
+        public async Task<ActionResult> Update([FromBody] UpdateAdvisorApiRequest request)
+        {
+            var command = _mapper.Map<UpdateAdvisorCommand>(request);
+            await _mediator.Send(command);
 
+            return NoContent();
+        }
     }
 }
