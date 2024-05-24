@@ -1,4 +1,4 @@
-﻿namespace Apexa.App.Advisor.WebApi.Utility
+﻿namespace Apexa.AdvisorApp.WebApi.Utility
 {
     public class ApexaHostOption
     {

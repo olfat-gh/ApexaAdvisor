@@ -1,4 +1,4 @@
-using Apexa.App.Advisor.WebApi.Extensions;
+using Apexa.AdvisorApp.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

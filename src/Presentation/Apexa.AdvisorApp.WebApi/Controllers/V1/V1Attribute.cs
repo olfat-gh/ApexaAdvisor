@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 
-namespace Apexa.App.Advisor.WebApi.Controllers.V1
+namespace Apexa.AdvisorApp.WebApi.Controllers.V1
 {
     public class V1Attribute : ApiVersionAttribute
     {

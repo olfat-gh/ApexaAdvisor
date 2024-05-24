@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Apexa.App.Advisor.WebApi.Controllers.V1
+namespace Apexa.AdvisorApp.WebApi.Controllers.V1
 {
     [V1]
     public class AdvisorController : ApexaControllerBase
@@ -12,6 +12,9 @@ namespace Apexa.App.Advisor.WebApi.Controllers.V1
             _logger = logger;
         }
 
-        
+       
+
+
+
     }
 }

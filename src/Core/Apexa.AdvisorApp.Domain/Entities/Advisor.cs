@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apexa.App.Advisor.Domain.Entities
+namespace Apexa.AdvisorApp.Domain.Entities
 {
     public class Advisor
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public required string Name { get; set; }
         public required string Sin { get; set; }
-        public  string Address { get; set; }
+        public string Address { get; set; }
         public string Phone { get; set; }
         public HealthStatus Status { get; set; }
     }

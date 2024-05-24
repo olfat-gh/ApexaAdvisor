@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Apexa.App.Advisor.WebApi.Utility
+namespace Apexa.AdvisorApp.WebApi.Utility
 {
     /// <summary>
     /// applying actions attributes to swagger 

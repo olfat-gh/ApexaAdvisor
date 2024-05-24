@@ -1,10 +1,10 @@
-﻿using Apexa.App.Advisor.WebApi.Utility;
+﻿using Apexa.AdvisorApp.WebApi.Utility;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Apexa.App.Advisor.WebApi.Extensions
+namespace Apexa.AdvisorApp.WebApi.Extensions
 {
     public static class AppHelper
     {

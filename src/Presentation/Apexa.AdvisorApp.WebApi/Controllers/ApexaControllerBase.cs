@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Apexa.App.Advisor.WebApi.Controllers
+namespace Apexa.AdvisorApp.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
