@@ -3,6 +3,7 @@ using Apexa.AdvisorApp.Application;
 using Apexa.AdvisorApp.Infrastructure;
 using Apexa.AdvisorApp.WebApi.Mappings;
 using Apexa.AdvisorApp.Application.Mappings;
+using Apexa.AdvisorApp.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddSwagger();
 
 var app = builder.Build();
 
+app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
