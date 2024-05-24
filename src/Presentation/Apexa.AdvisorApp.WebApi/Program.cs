@@ -1,4 +1,5 @@
 using Apexa.AdvisorApp.WebApi.Extensions;
+using Apexa.AdvisorApp.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.ConfigSystemInfo(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddApexaApiVersioning();
 builder.Services.AddSwagger();
+
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
