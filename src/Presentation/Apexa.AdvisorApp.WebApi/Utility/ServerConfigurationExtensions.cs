@@ -1,8 +1,11 @@
-﻿using Apexa.AdvisorApp.WebApi.Utility;
+﻿using Apexa.AdvisorApp.WebApi.Mappings;
+using Apexa.AdvisorApp.WebApi.Utility;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using AutoMapper;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace Apexa.AdvisorApp.WebApi.Extensions
 {
@@ -92,5 +95,14 @@ namespace Apexa.AdvisorApp.WebApi.Extensions
 
             return services;
         }
+
+        internal static IServiceCollection RegisterAutoMapperServices(this IServiceCollection services, Type[] profilesToAdd, Assembly assembly)
+        {
+           
+            services.AddAutoMapper(AutoMappingConfig.GetConfig(profilesToAdd), assembly);
+            return services;
+        }
+
+
     }
 }
