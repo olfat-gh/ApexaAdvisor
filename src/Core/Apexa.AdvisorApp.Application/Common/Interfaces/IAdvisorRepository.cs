@@ -11,5 +11,6 @@ namespace Apexa.AdvisorApp.Application.Common.Interfaces
     {
 
         Task<Advisor> GetByIdAsync(Guid id);
+        Task<(int, List<Advisor>)> GetAdvisorsAsync(int pageIndex,int pageSize);
     }
 }
