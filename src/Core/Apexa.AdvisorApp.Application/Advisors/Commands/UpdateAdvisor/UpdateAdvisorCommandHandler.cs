@@ -23,6 +23,13 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor
         }
         public async Task Handle(UpdateAdvisorCommand request, CancellationToken cancellationToken)
         {
+            var validator = new UpdateAdvisorCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
+
+
             var advisor = await _advisorRepository.GetByIdAsync(request.Id);
 
             if (advisor == null)

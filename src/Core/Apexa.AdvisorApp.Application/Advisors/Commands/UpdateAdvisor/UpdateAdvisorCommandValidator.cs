@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
+namespace Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor
 {
-    public class CreateAdvisorCommandValidator : AbstractValidator<CreateAdvisorCommand>
+    public class UpdateAdvisorCommandValidator : AbstractValidator<UpdateAdvisorCommand>
     {
-        public CreateAdvisorCommandValidator()
+        public UpdateAdvisorCommandValidator()
         {
+            RuleFor(p => p.Id)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull();
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
@@ -26,6 +30,9 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
 
             RuleFor(p => p.Phone)
                 .Length(8).WithMessage("{PropertyName} must be 8 characters.");
+
+            RuleFor(p => p.Status)
+                .IsInEnum().WithMessage("{PropertyName} must be Green,Yellow,Red characters.");
 
         }
     }
