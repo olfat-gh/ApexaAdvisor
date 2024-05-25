@@ -23,13 +23,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C23A1373
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{07205C0E-4A25-4411-BED8-6D781873ACFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.IntegrationTests", "tests\Integration\Infrastructure.IntegrationTests\Infrastructure.IntegrationTests.csproj", "{BE5EB6B7-25EA-46DB-8137-DA14316D8476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.IntegrationTests", "tests\Integration\Infrastructure.IntegrationTests\Infrastructure.IntegrationTests.csproj", "{BE5EB6B7-25EA-46DB-8137-DA14316D8476}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{5661C2AD-A9E9-4708-B4DB-D1F780ED5144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "tests\UnitTests\Application.UnitTests\Application.UnitTests.csproj", "{A46B1F85-5AFB-4C31-A4AC-2E2C3F581BCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "tests\UnitTests\Application.UnitTests\Application.UnitTests.csproj", "{A46B1F85-5AFB-4C31-A4AC-2E2C3F581BCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.IntegrationTests", "tests\UnitTests\API.UnitTests\API.IntegrationTests.csproj", "{459D8D75-E476-45DA-9E22-390BB7730C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.IntegrationTests", "tests\UnitTests\API.UnitTests\API.IntegrationTests.csproj", "{459D8D75-E476-45DA-9E22-390BB7730C77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{5068B48C-C71B-49CE-B540-3582F71F5D25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{8C0D0117-4CA3-4167-8C0F-5F79F8345037}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{182B1B49-924A-4222-9CFE-ED054E0EB46B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apexa.Lib.Cache", "lib\src\Apexa.Lib.Cache\Apexa.Lib.Cache.csproj", "{2CC72322-A83B-4182-B70C-5B9D5972FE18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Apexa.Lib.Cache.UnitTests", "lib\tests\Apexa.Lib.Cache.UnitTests\Apexa.Lib.Cache.UnitTests.csproj", "{9D0D8EF5-3698-4407-AD4F-2688CF521205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +79,14 @@ Global
 		{459D8D75-E476-45DA-9E22-390BB7730C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{459D8D75-E476-45DA-9E22-390BB7730C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{459D8D75-E476-45DA-9E22-390BB7730C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC72322-A83B-4182-B70C-5B9D5972FE18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC72322-A83B-4182-B70C-5B9D5972FE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC72322-A83B-4182-B70C-5B9D5972FE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC72322-A83B-4182-B70C-5B9D5972FE18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D0D8EF5-3698-4407-AD4F-2688CF521205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D0D8EF5-3698-4407-AD4F-2688CF521205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D0D8EF5-3698-4407-AD4F-2688CF521205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D0D8EF5-3698-4407-AD4F-2688CF521205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +104,10 @@ Global
 		{5661C2AD-A9E9-4708-B4DB-D1F780ED5144} = {C23A1373-6620-47D0-81C7-FD7D95CE31F8}
 		{A46B1F85-5AFB-4C31-A4AC-2E2C3F581BCC} = {5661C2AD-A9E9-4708-B4DB-D1F780ED5144}
 		{459D8D75-E476-45DA-9E22-390BB7730C77} = {07205C0E-4A25-4411-BED8-6D781873ACFD}
+		{8C0D0117-4CA3-4167-8C0F-5F79F8345037} = {5068B48C-C71B-49CE-B540-3582F71F5D25}
+		{182B1B49-924A-4222-9CFE-ED054E0EB46B} = {5068B48C-C71B-49CE-B540-3582F71F5D25}
+		{2CC72322-A83B-4182-B70C-5B9D5972FE18} = {8C0D0117-4CA3-4167-8C0F-5F79F8345037}
+		{9D0D8EF5-3698-4407-AD4F-2688CF521205} = {182B1B49-924A-4222-9CFE-ED054E0EB46B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2FE03AB1-4B5D-4447-82AE-C25D4E441583}
