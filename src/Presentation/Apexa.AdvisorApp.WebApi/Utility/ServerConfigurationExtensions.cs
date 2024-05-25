@@ -1,4 +1,5 @@
-﻿using Apexa.AdvisorApp.WebApi.Mappings;
+﻿using Apexa.AdvisorApp.Application.Mappings;
+using Apexa.AdvisorApp.WebApi.Mappings;
 using Apexa.AdvisorApp.WebApi.Utility;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
@@ -95,14 +96,6 @@ namespace Apexa.AdvisorApp.WebApi.Extensions
 
             return services;
         }
-
-        internal static IServiceCollection RegisterAutoMapperServices(this IServiceCollection services, Type[] profilesToAdd, Assembly assembly)
-        {
-           
-            services.AddAutoMapper(AutoMappingConfig.GetConfig(profilesToAdd), assembly);
-            return services;
-        }
-
 
     }
 }

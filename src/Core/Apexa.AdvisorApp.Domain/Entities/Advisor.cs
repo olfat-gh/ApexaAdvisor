@@ -11,8 +11,8 @@ namespace Apexa.AdvisorApp.Domain.Entities
     public class Advisor
     {
         public Guid Id { get; set; }
-        public required string Name { get; set; }
-        public required string Sin { get; set; }
+        public string Name { get; set; }
+        public string SIN { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public HealthStatus Status { get; set; }

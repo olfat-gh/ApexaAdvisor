@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 
-namespace Apexa.AdvisorApp.WebApi.Mappings
+namespace Apexa.AdvisorApp.Application.Mappings
 {
     public class AutoMappingConfig
     {
