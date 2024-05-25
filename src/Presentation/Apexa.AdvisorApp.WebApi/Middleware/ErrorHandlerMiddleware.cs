@@ -38,7 +38,6 @@ namespace Apexa.AdvisorApp.WebApi.Middleware
         {
             var response = context.Response;
             response.ContentType = "application/json";
-            _logger.LogError(exception, exception.Message);
 
             var httpStatusCode = StatusCodes.Status500InternalServerError;
             var result =  new ErrorApiResponse();
@@ -54,6 +53,7 @@ namespace Apexa.AdvisorApp.WebApi.Middleware
                     httpStatusCode = StatusCodes.Status404NotFound;
                     break;
                 case Exception:
+                    _logger.LogError(exception, exception.Message);
                     httpStatusCode  = StatusCodes.Status500InternalServerError;
                     break;
             }

@@ -32,6 +32,8 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
         [MapToApiVersion("1.0")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateAdvisorApiRequest request)
         {
+            _logger.LogInformation("Started Create endpoint. ");
+
             var command = _mapper.Map<CreateAdvisorCommand>(request);
             var id = await _mediator.Send(command);
             return Ok(id);
@@ -42,6 +44,8 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
         [MapToApiVersion("1.0")]
         public async Task<IActionResult> Delete(Guid advisorId)
         {
+            _logger.LogInformation("Started deleting endpoint for advisor with Id : {Id} . ", advisorId);
+
             var command = new DeleteAdvisorCommand() { AdvisorId = advisorId };
             await _mediator.Send(command);
 
@@ -52,6 +56,8 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
         [MapToApiVersion("1.0")]
         public async Task<ActionResult<AdvisorApiResponse>> GetAdvisorById(Guid advisorId)
         {
+            _logger.LogInformation("Started getting endpoint for advisor with Id : {Id} . ", advisorId);
+
             var command = new GetAdvisorQuery() { AdvisorId = advisorId };
             var advisor=await _mediator.Send(command);
             return Ok(_mapper.Map<AdvisorApiResponse>(advisor));
@@ -61,9 +67,10 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
         [MapToApiVersion("1.0")]
         public async Task<ActionResult<PaginationApiResponse<AdvisorApiResponse>>> GetAllAdvisors([FromQuery] AdvisorWithPagingApiRequest request)
         {
+            _logger.LogInformation("Started getting all advisors endpoint. ");
+
             var query = _mapper.Map<GetAdvisorsListQuery>(request);
             var (total,listAdvisors) = await _mediator.Send(query);
-
 
             return Ok(new PaginationApiResponse<AdvisorApiResponse>(total, _mapper.Map<List<AdvisorApiResponse>>(listAdvisors)));
         }
@@ -72,6 +79,8 @@ namespace Apexa.AdvisorApp.WebApi.Controllers.V1
         [MapToApiVersion("1.0")]
         public async Task<ActionResult> Update([FromBody] UpdateAdvisorApiRequest request)
         {
+            _logger.LogInformation("Started updating endpoint for advisor with Id : {Id} . ", request.Id);
+
             var command = _mapper.Map<UpdateAdvisorCommand>(request);
             await _mediator.Send(command);
 
