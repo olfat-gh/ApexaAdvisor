@@ -10,7 +10,7 @@ namespace Apexa.AdvisorApp.Contracts.V1.Advisor
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Sin { get; set; }
+        public string SIN { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public HealthStatus Status { get; set; }

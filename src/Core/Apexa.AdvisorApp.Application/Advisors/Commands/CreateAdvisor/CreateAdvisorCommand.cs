@@ -11,7 +11,7 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
     public class CreateAdvisorCommand : IRequest<Guid>
     {
         public required string Name { get; set; }
-        public required string Sin { get; set; }
+        public required string SIN { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public HealthStatus Status { get; set; }

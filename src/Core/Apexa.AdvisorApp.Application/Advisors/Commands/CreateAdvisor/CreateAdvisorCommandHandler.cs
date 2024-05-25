@@ -1,4 +1,5 @@
-﻿using Apexa.AdvisorApp.Application.Common.Interfaces;
+﻿using Apexa.AdvisorApp.Application.Common.Exceptions;
+using Apexa.AdvisorApp.Application.Common.Interfaces;
 using Apexa.AdvisorApp.Domain.Entities;
 using AutoMapper;
 using MediatR;
@@ -22,6 +23,13 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands.CreateAdvisor
         }
         public async Task<Guid> Handle(CreateAdvisorCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateAdvisorCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (validationResult.Errors.Count > 0)
+                throw new ValidationException(validationResult);
+
+
             var advisor = _mapper.Map<Advisor>(request);
             advisor = await _advisorRepository.AddAsync(advisor);
 

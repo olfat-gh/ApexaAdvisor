@@ -8,7 +8,6 @@ namespace Apexa.AdvisorApp.Contracts.Common
 {
     public class ErrorApiResponse
     {
-        public int StatusCode { get; set; }
-        public string FailedMessage { get; set; }
+        public List<string> FailedMessages { get; set; }
     }
 }

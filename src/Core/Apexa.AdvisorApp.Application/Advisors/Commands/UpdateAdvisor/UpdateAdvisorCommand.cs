@@ -12,7 +12,7 @@ namespace Apexa.AdvisorApp.Application.Advisors.Commands.UpdateAdvisor
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }
-        public required string Sin { get; set; }
+        public required string SIN { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public HealthStatus Status { get; set; }
