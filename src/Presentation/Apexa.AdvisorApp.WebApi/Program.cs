@@ -25,6 +25,18 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+var origins = builder.Configuration.GetSection("Cors:Origins").Value;
+var methods = builder.Configuration.GetSection("Cors:Methods").Get<string[]>();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        corsBuilder =>
+        {
+            corsBuilder.WithOrigins(origins)
+                                .AllowAnyHeader()
+                                .WithMethods(methods);
+        });
+});
 
 var app = builder.Build();
 
