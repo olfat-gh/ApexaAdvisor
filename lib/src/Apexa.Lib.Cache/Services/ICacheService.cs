@@ -12,5 +12,6 @@ namespace Apexa.Lib.Cache.Services
 
         public void PutValue(string key, T value);
 
+        public void RemoveValue(string key);
     }
 }

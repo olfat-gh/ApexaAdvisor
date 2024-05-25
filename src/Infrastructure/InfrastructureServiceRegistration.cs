@@ -4,6 +4,7 @@ using Apexa.AdvisorApp.Infrastructure.Common.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Apexa.Lib.Cache.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace Apexa.AdvisorApp.Infrastructure
 
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-
+            services.AddCachingSystem(configuration);
             services.AddDbContext<AdvisorAppDbContext>(options =>
                options.UseInMemoryDatabase("AdvisorDB"));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IAdvisorRepository, AdvisorRepository>();
+            services.Decorate<IAdvisorRepository, CachedAdvisorRepository>();
+
             return services;
         }
 

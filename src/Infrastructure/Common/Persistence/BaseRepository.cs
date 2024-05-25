@@ -35,10 +35,5 @@ namespace Apexa.AdvisorApp.Infrastructure.Common.Persistence
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
-
-        public Task<IReadOnlyList<T>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

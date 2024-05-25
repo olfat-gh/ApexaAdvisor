@@ -65,6 +65,21 @@ namespace Apexa.Lib.Cache.Services
 
             }
         }
+
+        public void RemoveValue(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+                throw new ArgumentNullException(nameof(key));
+ 
+            if (_table.ContainsKey(key)) 
+            {
+                var item = _table[key];
+                _itemList.DeleteItem(item);
+                _table.Remove(key);
+            }
+           
+        }
+
         private Node<T> MakeFirstNode(string key)
         {
             var item = _table[key];

@@ -21,7 +21,7 @@ namespace Apexa.AdvisorApp.Infrastructure.Advisors.Persistence
             
         }
 
-        public async Task<Advisor?> GetByIdAsync(Guid id)
+        public async Task<Advisor> GetByIdAsync(Guid id)
         {
             return await _dbContext.Advisors.FirstOrDefaultAsync(item => item.Id == id);
         }
