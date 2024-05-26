@@ -21,9 +21,17 @@ namespace Application.UnitTests.Advisors
 {
     public class CreateAdvisorTests
     {
+        private readonly Mock<ILogger<CreateAdvisorCommandHandler>> _logger;
+        private readonly IMapper _mapper;
+        private readonly Mock<IAdvisorRepository> _mockAdvisorRepository;
+
 
         public CreateAdvisorTests()
         {
+            _logger = new Mock<ILogger<CreateAdvisorCommandHandler>>();
+            _mockAdvisorRepository = new Mock<IAdvisorRepository>();
+            var configurationProvider = new MapperConfiguration(AutoMappingConfig.GetConfig([typeof(MapperProfile)]));
+            _mapper = configurationProvider.CreateMapper();
 
         }
 
@@ -31,13 +39,7 @@ namespace Application.UnitTests.Advisors
         [Fact]
         public async Task Handle_ValidAdvisor_Added()
         {
-            var configurationProvider = new MapperConfiguration(AutoMappingConfig.GetConfig([typeof(MapperProfile)]));
-            var logger = new Mock<ILogger<CreateAdvisorCommandHandler>>();
-            var mockAdvisorRepository = new Mock<IAdvisorRepository>();
-
-
-
-
+           
             var advisorList = new List<Advisor>()
             {
                 new Advisor()
@@ -51,17 +53,17 @@ namespace Application.UnitTests.Advisors
 
                 }
             };
-
-
-            mockAdvisorRepository.Setup(r => r.GetAdvisorsAsync(1, 10)).ReturnsAsync((advisorList.Count, advisorList));
-            mockAdvisorRepository.Setup(repo => repo.AddAsync(It.IsAny<Advisor>())).ReturnsAsync(
+            _mockAdvisorRepository.Setup(r => r.GetAdvisorsAsync(1, 10)).ReturnsAsync((advisorList.Count, advisorList));
+            _mockAdvisorRepository.Setup(repo => repo.AddAsync(It.IsAny<Advisor>())).ReturnsAsync(
                (Advisor advisor) =>
                {
                    advisorList.Add(advisor);
                    return advisor;
                });
 
-            var handler = new CreateAdvisorCommandHandler(logger.Object, configurationProvider.CreateMapper(), mockAdvisorRepository.Object);
+
+
+            var handler = new CreateAdvisorCommandHandler(_logger.Object, _mapper, _mockAdvisorRepository.Object);
             await handler.Handle(new CreateAdvisorCommand()
             {
                 Name = "Test Advisor2",
@@ -71,7 +73,7 @@ namespace Application.UnitTests.Advisors
                 Status = HealthStatus.Yellow,
 
             }, CancellationToken.None);
-            var (total,allAdvisors) = await mockAdvisorRepository.Object.GetAdvisorsAsync(1,10);
+            var (total,allAdvisors) = await _mockAdvisorRepository.Object.GetAdvisorsAsync(1,10);
             allAdvisors.Count.Should().Be(2);
 
         }
