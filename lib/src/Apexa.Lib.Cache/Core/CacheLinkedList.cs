@@ -34,6 +34,7 @@ namespace Apexa.Lib.Cache.Core
 
         public void AddItem(Node<T> node)
         {
+           
             if (Head == null)
             {
                 Head = Tail = node;
@@ -58,6 +59,7 @@ namespace Apexa.Lib.Cache.Core
             {
                 Head.Prev = node;
                 node.Next = Head;
+                node.Prev = null;
                 Head = node;
             }
 
@@ -66,10 +68,14 @@ namespace Apexa.Lib.Cache.Core
 
         public void DeleteItem(Node<T> node)
         {
+
             if (node == Head)
                 Head = Head.Next;
             else if (node == Tail)
+            {
                 Tail = Tail.Prev;
+                Tail.Next = null;
+            }
             else
             {
                 node.Prev.Next = node.Next;
@@ -80,6 +86,7 @@ namespace Apexa.Lib.Cache.Core
             node.Prev = null;
 
             Count--;
+
         }
         public Node<T> DeleteItem()
         {
