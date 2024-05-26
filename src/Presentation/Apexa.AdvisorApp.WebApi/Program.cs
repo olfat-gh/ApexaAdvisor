@@ -25,7 +25,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
-var origins = builder.Configuration.GetSection("Cors:Origins").Value;
+var origins = builder.Configuration.GetSection("Cors:Origins").Get<string[]>();
 var methods = builder.Configuration.GetSection("Cors:Methods").Get<string[]>();
 builder.Services.AddCors(options =>
 {
@@ -42,7 +42,13 @@ var app = builder.Build();
 
 app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseHttpsRedirection();
-
+app.UseCors(corsPolicyBuilder =>
+{
+    corsPolicyBuilder
+    .WithOrigins(origins)
+    .WithMethods(methods)
+    .AllowAnyHeader();
+});
 app.UseAuthorization();
 
 app.MapControllers();
