@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Core\Apexa.AdvisorApp.Application\Apexa.AdvisorApp.Application.csproj" />
+    <ProjectReference Include="..\..\src\Core\Apexa.AdvisorApp.Application\Apexa.AdvisorApp.Application.csproj" />
   </ItemGroup>
 
 </Project>

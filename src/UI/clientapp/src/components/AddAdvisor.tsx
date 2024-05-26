@@ -2,36 +2,52 @@ import React, { useEffect } from "react";
 import * as Yup from "yup";
 import {
   Formik,
-  FormikHelpers,
-  FormikProps,
   Form,
   Field,
   FieldProps,
   ErrorMessage,
-  FormikValues,
+  FormikHelpers,
 } from "formik";
 import { IPayload } from "../models/interfaces";
+import Api from "../services/api";
+import { Spinner } from "./Spinner";
 
 interface INewAdvisorProp {
-  onAddAdvisor: (payload: IPayload) => void;
+  onFetchFirstPage(): void;
 }
 
-const AddAdvisor = ({ onAddAdvisor }: INewAdvisorProp) => {
+const AddAdvisor = ({ onFetchFirstPage }: INewAdvisorProp) => {
   const initialValues: IPayload = { name: "", sin: "", address: "", phone: "" };
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().max(255, "Too Long!").required("Required"),
+    name: Yup.string()
+      .max(255, "Must be less than 255 characters!")
+      .required("Required"),
     sin: Yup.string().length(9, "Must be 9 characters!").required("Required"),
-    address: Yup.string().max(255, "Too Long!"),
+    address: Yup.string().max(255, "Must be less than 255 characters!"),
     phone: Yup.string().length(8, "Must be 8 characters!"),
   });
+
+  const handleSubmit = async (
+    payload: IPayload,
+    { setSubmitting }: FormikHelpers<IPayload>
+  ) => {
+    setSubmitting(true);
+    try {
+      await Api.addAdvisor(payload);
+      onFetchFirstPage();
+    } catch (error) {
+      console.log(error);
+    }
+    setSubmitting(false);
+  };
 
   return (
     <div className="add-new">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onAddAdvisor}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting, errors, handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
@@ -67,9 +83,11 @@ const AddAdvisor = ({ onAddAdvisor }: INewAdvisorProp) => {
               className={errors.phone ? "error" : ""}
             />
             <ErrorMessage className="error" name="phone" component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              Add New Advisor
-            </button>
+            {isSubmitting ? (
+              <Spinner />
+            ) : (
+              <button type="submit">Add New Advisor</button>
+            )}
           </Form>
         )}
       </Formik>

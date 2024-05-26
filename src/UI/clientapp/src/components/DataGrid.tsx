@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { IAdvisor } from "../models/interfaces";
 import "../assets/css/style.css";
-import { PAGE_SIZE } from "../constants";
+import { PAGE_INIT_INDEX, PAGE_SIZE } from "../constants";
+import { Spinner } from "./Spinner";
 
 interface Props {
   totalPages: number;
   data: IAdvisor[] | undefined;
   loading: boolean;
+  reset: boolean;
   onFetch(pageIndex: number): Promise<void>;
   onDelete(id: string): void;
 }
@@ -15,14 +17,20 @@ const DataGrid: React.FC<Props> = ({
   totalPages,
   data,
   loading,
+  reset,
   onFetch,
   onDelete,
 }) => {
-  const [pageIndex, setPageIndex] = useState(1);
+  const [pageIndex, setPageIndex] = useState(PAGE_INIT_INDEX);
 
   useEffect(() => {
-    onFetch(pageIndex);
-  }, [pageIndex]);
+    if (reset) {
+      setPageIndex(PAGE_INIT_INDEX);
+      onFetch(pageIndex);
+    } else {
+      onFetch(pageIndex);
+    }
+  }, [pageIndex, reset]);
 
   const columns = [
     "#",
@@ -60,7 +68,9 @@ const DataGrid: React.FC<Props> = ({
         <tbody>
           {loading ? (
             <tr>
-              <td>Loading...</td>
+              <td>
+                Loading... <Spinner />
+              </td>
             </tr>
           ) : data?.length === 0 ? (
             "No Data Found "
@@ -78,10 +88,17 @@ const DataGrid: React.FC<Props> = ({
                     href="#"
                     onClick={(e) => {
                       onDelete(row.id);
-                      setPageIndex(1);
+                      setPageIndex(PAGE_INIT_INDEX);
                     }}
                   >
                     Delete
+                  </a>
+                  <a
+                    style={{ paddingLeft: "8px" }}
+                    href="#"
+                    onClick={(e) => {}}
+                  >
+                    Update
                   </a>
                 </td>
               </tr>
