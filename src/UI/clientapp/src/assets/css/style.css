@@ -1,0 +1,71 @@
+.datagrid {
+    border-collapse: collapse;
+    margin: 50px auto 10px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.datagrid thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+ 
+.datagrid th,
+.datagrid td {
+    padding: 12px 15px;
+}
+
+.datagrid tbody tr {
+    border-bottom: 1px solid #dddddd;
+ 
+}
+
+.datagrid tbody tr:hover {
+    background-color: #e9ecec;
+  }
+
+.datagrid tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.datagrid tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.datagrid tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+ 
+.pagination {
+    margin: 0;
+    padding: 0;
+    text-align: center
+}
+
+.pagination li {
+    display: inline
+}
+
+.pagination li a {
+    border-radius: 5px;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #000
+}
+
+.pagination li a.active {
+    background-color: #4caf50;
+    color: #fff
+}
+
+.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+} 
