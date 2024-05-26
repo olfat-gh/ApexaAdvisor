@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IAdvisor } from "../models/IAdvisor";
+import { IAdvisor } from "../models/interfaces";
 import "../assets/css/style.css";
 import { PAGE_SIZE } from "../constants";
 

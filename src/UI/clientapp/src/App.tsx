@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import DataGrid from "./components/DataGrid";
-import { IAdvisor, IResponse } from "./models/IAdvisor";
+import { IAdvisor, IPayload, IResponse } from "./models/interfaces";
 import Api from "./services/api";
 import { PAGE_SIZE } from "./constants/index";
+import AddAdvisor from "./components/AddAdvisor";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,14 @@ function App() {
     await Api.delAdvisor(id);
     await fetch(1);
   };
+  const handleSubmit = async (payload: IPayload) => {
+    try {
+      await Api.addAdvisor(payload);
+      await fetch(1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="App">
@@ -34,6 +43,7 @@ function App() {
         onFetch={fetch}
         onDelete={handleDelete}
       />
+      <AddAdvisor onAddAdvisor={handleSubmit} />
     </div>
   );
 }

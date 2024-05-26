@@ -21,7 +21,6 @@ export interface IPayload {
 }
 
 export interface IResponse {
-  totalPages: number,
-  records: IAdvisor[]
+  totalPages: number;
+  records: IAdvisor[];
 }
-

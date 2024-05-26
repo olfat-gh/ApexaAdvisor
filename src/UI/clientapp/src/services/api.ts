@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IAdvisor, IResponse, IPayload } from "../models/IAdvisor";
+import { IAdvisor, IResponse, IPayload } from "../models/interfaces";
 import { URL } from "../constants";
 
 class Api {
